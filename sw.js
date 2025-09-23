@@ -1,13 +1,13 @@
-const CACHE_NAME = 'acp-checklists-cache-v2';
+const CACHE_NAME = 'acp-checklists-cache-v3';
 
 const urlsToCache = [
   '/',
-  'index.html',
-  'manifest.json',
-  'icon-192x192.png',
-  'icon-512x512.png',
-  'maskable_icon.png',
-  'apple-touch-icon.png'
+  '/index.html',
+  '/manifest.json',
+  '/icon-192x192.png',
+  '/icon-512x512.png',
+  '/maskable_icon.png',
+  '/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', event => {
