@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acp-checklists-cache-v3';
+const CACHE_NAME = 'acp-checklists-cache-v4'; // Version incrémentée pour invalider l'ancien cache
 
 const urlsToCache = [
   '/',
@@ -6,7 +6,6 @@ const urlsToCache = [
   '/manifest.json',
   '/icon-192x192.png',
   '/icon-512x512.png',
-  '/maskable_icon.png',
   '/apple-touch-icon.png'
 ];
 
@@ -15,7 +14,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
+        console.log('Cache ouvert');
         return cache.addAll(urlsToCache);
       })
   );
