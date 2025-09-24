@@ -1,5 +1,5 @@
 {
-  "name": "ACP-V02",
+  "name": "ACP",
   "description": "Une application de checklists d'avion pour l'AéroClub du Poitou. Accédez rapidement aux checklists pour les différents appareils du club.",
   "requestFramePermissions": []
 }

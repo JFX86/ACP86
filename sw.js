@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acp-checklists-cache-v7'; // Version incrémentée pour invalider l'ancien cache
+const CACHE_NAME = 'acp-checklists-cache-v8'; // Version incrémentée pour invalider l'ancien cache
 
 const urlsToCache = [
   '/',
