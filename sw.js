@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acp-checklists-cache-v6'; // Version incrémentée pour invalider l'ancien cache
+const CACHE_NAME = 'acp-checklists-cache-v7'; // Version incrémentée pour invalider l'ancien cache
 
 const urlsToCache = [
   '/',
@@ -21,14 +21,15 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-  // Supprime les anciens caches pour forcer la mise à jour
+  // Supprime les anciens caches et prend le contrôle des clients immédiatement
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.filter(name => name !== CACHE_NAME)
-        .map(name => caches.delete(name))
+        cacheNames
+          .filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
@@ -37,7 +38,19 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') {
     return;
   }
+
+  // Stratégie "réseau d'abord" pour le manifest.json pour garantir qu'il soit toujours à jour.
+  if (event.request.url.includes('manifest.json')) {
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        console.log('Manifest non accessible en réseau, tentative depuis le cache.');
+        return caches.match(event.request);
+      })
+    );
+    return;
+  }
   
+  // Stratégie "cache d'abord" pour toutes les autres ressources pour la performance.
   event.respondWith(
     caches.match(event.request)
       .then(response => {
