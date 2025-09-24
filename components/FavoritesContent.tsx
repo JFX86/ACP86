@@ -4,7 +4,7 @@ import { TABS, AIRCRAFT_COLORS } from '../constants';
 
 interface FavoritesContentProps {
   currentFavorite: TabId | null;
-  setFavorite: (tab: TabId) => void;
+  setFavorite: (tab: TabId | null) => void;
 }
 
 const FavoriteButton: React.FC<{
@@ -35,7 +35,12 @@ const FavoritesContent: React.FC<FavoritesContentProps> = ({ currentFavorite, se
   const otherOptions: TabId[] = ['RECAP', 'LIENS'];
 
   const handleSelectFavorite = (tabId: TabId) => {
-    setFavorite(tabId);
+    // If the clicked tab is already the favorite, deselect it. Otherwise, set it as the new favorite.
+    if (currentFavorite === tabId) {
+      setFavorite(null);
+    } else {
+      setFavorite(tabId);
+    }
   };
 
   return (
@@ -48,7 +53,7 @@ const FavoritesContent: React.FC<FavoritesContentProps> = ({ currentFavorite, se
           L'onglet sélectionné s'affichera par défaut au lancement de l'application.
         </p>
         <p className="text-gray-400 text-sm mt-2">
-          Si aucun favori n'est choisi, l'application s'ouvrira sur l'onglet NOTICE.
+          Cliquez à nouveau sur un favori pour le désélectionner. Sans favori, l'application s'ouvrira sur l'onglet NOTICE.
         </p>
       </div>
       

@@ -71,10 +71,13 @@ const App: React.FC = () => {
     }
   }, [favoriteTab]);
 
-  const handleSetFavorite = (tab: TabId) => {
+  const handleSetFavorite = (tab: TabId | null) => {
     setFavoriteTab(tab);
-    // Switch to the new favorite tab immediately for better user feedback
-    setActiveTab(tab);
+    // If a new favorite is set, switch to it for immediate feedback.
+    // If it's deselected (tab is null), the user is on the "FAVORI" tab, so we don't need to switch.
+    if (tab) {
+      setActiveTab(tab);
+    }
   }
 
   const handleTabChange = (newTab: TabId) => {
