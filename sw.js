@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acp-checklists-cache-v4'; // Version incrémentée pour invalider l'ancien cache
+const CACHE_NAME = 'acp-checklists-cache-v6'; // Version incrémentée pour invalider l'ancien cache
 
 const urlsToCache = [
   '/',
@@ -10,13 +10,25 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', event => {
-  self.skipWaiting();
+  self.skipWaiting(); // Force le service worker en attente à devenir le service worker actif.
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Cache ouvert');
         return cache.addAll(urlsToCache);
       })
+  );
+});
+
+self.addEventListener('activate', event => {
+  // Supprime les anciens caches pour forcer la mise à jour
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(name => name !== CACHE_NAME)
+        .map(name => caches.delete(name))
+      );
+    })
   );
 });
 
@@ -40,7 +52,7 @@ self.addEventListener('fetch', event => {
         return fetch(fetchRequest).then(
           networkResponse => {
             // On vérifie si la réponse est valide.
-            if (!networkResponse || networkResponse.status !== 200) {
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
             
@@ -56,20 +68,5 @@ self.addEventListener('fetch', event => {
           }
         );
       })
-    );
-});
-
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      ).then(() => self.clients.claim());
-    })
   );
 });
