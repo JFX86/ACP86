@@ -249,7 +249,7 @@ const bubkChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -412,7 +412,7 @@ const giyaChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -585,7 +585,7 @@ const gkqaChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -759,7 +759,7 @@ const glvxChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -937,7 +937,7 @@ const hmpiChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -1116,7 +1116,7 @@ const hnnyChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
@@ -1291,7 +1291,7 @@ const hpplChecklistContent: ChecklistSection[] = [
         { item: 'OpenFlyers' },
         { item: 'Planche Club' },
         { item: 'Carnet de vol' },
-        { item: 'Carnet Perso (le cas échéant)' },
+        { item: 'Carnet.aero (si utilisé)' },
         { item: 'Faire signer vol (si instruction)' },
     ]},
 ];
